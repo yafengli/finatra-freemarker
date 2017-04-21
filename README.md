@@ -1,0 +1,1 @@
+#finatra-freemarker-seed

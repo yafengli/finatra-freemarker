@@ -2,13 +2,11 @@ import Build._
 
 lazy val root = (project in file(".")).settings(
   inThisBuild(List(
-    organization := "com.twitter",
-    name := "finatra-freemarker",
+    organization := "com.twitter",  
     version := $("finatra"),
     crossScalaVersions := Seq("2.11.8", "2.12.1")
   )),
-  name := "hello",
-  mainClass := Some("com.example.HelloServerMain"),
+  name := "finatra-freemarker",  
   libraryDependencies ++= Seq(
     "com.twitter" %% "finatra-http" % $("finatra"),
     "com.twitter" %% "finatra-httpclient" % $("finatra"),

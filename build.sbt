@@ -4,8 +4,8 @@ lazy val root = (project in file(".")).settings(
   inThisBuild(List(
     organization := "com.twitter",
     name := "finatra-freemarker",
-    //scalaVersion := "2.11.8",
-    crossScalaVersions := Seq("2.11.8","2.12.1")
+    version := $("finatra"),
+    crossScalaVersions := Seq("2.11.8", "2.12.1")
   )),
   name := "hello",
   mainClass := Some("com.example.HelloServerMain"),

@@ -1,12 +1,9 @@
-package finatra.views
+package finatra.freemarker
 
-import java.util
 import javax.inject.{Inject, Singleton}
 
 import com.google.common.net.MediaType
 import com.twitter.finatra.http.marshalling.{MessageBodyWriter, WriterResponse}
-
-import scala.collection.JavaConverters._
 
 @Singleton
 class FreemarkerMessageBodyWriter @Inject()(freemarkerService: FreemarkerService,
@@ -20,11 +17,16 @@ class FreemarkerMessageBodyWriter @Inject()(freemarkerService: FreemarkerService
         transToJavaMap(obj)))
   }
 
-  /* Private */
-  private def transToJavaMap(obj: Any): util.Map[String, Any] = {
+  /**
+    * Private
+    *
+    * @param obj
+    * @return Map[String,Any] or java.util.Map[String,Any] if ScalaObjectMapper
+    */
+  private def transToJavaMap(obj: Any): Map[String, Any] = {
     (Map[String, Any]() /: obj.getClass.getDeclaredFields) { (a, f) =>
       f.setAccessible(true)
       a + (f.getName -> f.get(obj))
-    } asJava
+    }
   }
 }

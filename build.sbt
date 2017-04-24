@@ -1,11 +1,13 @@
 import Build._
 
+licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
+
 lazy val root = (project in file(".")).settings(
-  organization := "com.twitter",
+  organization := "greatbit",
   name := "finatra-freemarker",
   version := $("finatra"),
   scalaVersion := "2.12.1",
-  crossScalaVersions := Seq("2.11.8", "2.12.1"),
+  crossScalaVersions := Seq("2.11.8", "2.12.1"),  
   libraryDependencies ++= Seq(
     "com.twitter" %% "finatra-http" % $("finatra"),
     "com.twitter" %% "finatra-httpclient" % $("finatra"),

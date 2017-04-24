@@ -1,4 +1,4 @@
-package finatra.views.template
+package finatra.freemarker
 
 import java.lang.reflect.{Field, Method, Modifier}
 import java.util.Date

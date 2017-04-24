@@ -1,4 +1,4 @@
-package finatra.views
+package finatra.freemarker
 
 import java.io.File
 import javax.inject.Singleton

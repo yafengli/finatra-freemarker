@@ -1,10 +1,10 @@
-package finatra.views
+package finatra.freemarker
 
 import java.util.concurrent.ConcurrentHashMap
 
 import scala.collection.JavaConverters._
 
-private[views] class FreemarkerTemplateNameLookup {
+private[freemarker] class FreemarkerTemplateNameLookup {
   private val classToTemplateNameCache = new ConcurrentHashMap[Class[_], String]().asScala
   private val suffix = if (System.getProperty("freemarker.template.suffix") != null) System.getProperty("freemarker.template.suffix") else ".ftl"
   /* Public */

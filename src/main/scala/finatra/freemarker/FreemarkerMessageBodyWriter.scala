@@ -14,16 +14,16 @@ class FreemarkerMessageBodyWriter @Inject()(freemarkerService: FreemarkerService
       MediaType.HTML_UTF_8,
       freemarkerService.createBuffer(
         templateLookup.getTemplateName(obj),
-        transToJavaMap(obj)))
+        transToMap(obj)))
   }
 
   /**
     * Private
     *
     * @param obj
-    * @return Map[String,Any] or java.util.Map[String,Any] if ScalaObjectMapper
+    * @return Map[String,Any] must ScalaObjectMapper
     */
-  private def transToJavaMap(obj: Any): Map[String, Any] = {
+  private def transToMap(obj: Any): Map[String, Any] = {
     (Map[String, Any]() /: obj.getClass.getDeclaredFields) { (a, f) =>
       f.setAccessible(true)
       a + (f.getName -> f.get(obj))

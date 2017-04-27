@@ -9,6 +9,7 @@ case class FreemarkerConfigurationFactory(configuration: Configuration)
 
 object FreemarkerConfigurationFactory {
   val FILE_ENCODING = "file.encoding"
+  val VERSION = Configuration.VERSION_2_3_26
 
   def apply(classLoader: ClassLoader, templateDir: String): FreemarkerConfigurationFactory = {
     val conf = configuration()
@@ -23,7 +24,7 @@ object FreemarkerConfigurationFactory {
   }
 
   private def configuration(): Configuration = {
-    val configuration = new Configuration(Configuration.VERSION_2_3_26)
+    val configuration = new Configuration(VERSION)
     configuration.setDefaultEncoding(sys.props.get(FILE_ENCODING).getOrElse(UTF_8.name()))
     configuration.setObjectWrapper(new ScalaObjectWrapper)
     configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER)

@@ -165,10 +165,9 @@ class ScalaBaseWrapper(val obj: Any, val wrapper: ObjectWrapper) extends Templat
       }
     // nothing found
     if (delegateToDefault) {
-      val builder = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_26)
+      val builder = new DefaultObjectWrapperBuilder(FreemarkerConfigurationFactory.VERSION)
       builder.build().wrap(obj)
-    }
-    else wrapper.wrap(null)
+    } else wrapper.wrap(null)
   }
 
   def isEmpty = false

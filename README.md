@@ -4,7 +4,7 @@ finatra-freemarker
 + Local:`sbt +publishLocal`
 
 #### Publish jCenter
-+ jcenter:`sbt +publish`
++ jCenter:`sbt +publish`
 
 
 

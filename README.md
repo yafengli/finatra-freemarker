@@ -6,6 +6,11 @@ finatra-freemarker
 #### Publish jCenter
 + jCenter:`sbt +publish`
 
+#### Usage
++ `build.sbt`:
+
+     libraryDependencies += "greatbit" %% "finatra-freemarker" % $("finatra")
+
 
 
 

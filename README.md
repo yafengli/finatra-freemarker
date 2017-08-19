@@ -4,7 +4,11 @@ finatra-freemarker
 + Local:`sbt +publishLocal`
 
 #### Publish jCenter
-+ jCenter:`sbt +publish`
++ jCenter:
+
+        sbt
+        >bintrayChangeCredentials   //first
+        >+publish
 
 #### Usage
 + `build.sbt`:

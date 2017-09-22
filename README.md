@@ -1,7 +1,7 @@
 finatra-freemarker
 ------------
 #### Publish Ivy Repository
-+ Local:`sbt +publishLocal`
++ Local:`sbt publishLocal`
 
 #### Publish jCenter
 + jCenter:

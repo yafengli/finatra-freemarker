@@ -7,7 +7,6 @@ lazy val root = (project in file(".")).settings(
   name := "finatra-freemarker",
   version := $("finatra"),
   scalaVersion := $("scala"),
-  crossScalaVersions := Seq("2.11.8", $("scala")),
   libraryDependencies ++= Seq(
     "com.twitter" %% "finatra-http" % $("finatra"),
     "org.freemarker" % "freemarker" % $("freemarker"),

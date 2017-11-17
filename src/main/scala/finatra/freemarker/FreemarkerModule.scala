@@ -6,7 +6,7 @@ import javax.inject.Singleton
 import com.google.inject.Provides
 import com.twitter.finatra.http.internal.marshalling.MessageBodyManager
 import com.twitter.finatra.http.modules.DocRootModule
-import com.twitter.finatra.http.routing.FileResolver
+import com.twitter.finatra.utils.FileResolver
 import com.twitter.inject.annotations.Flag
 import com.twitter.inject.{Injector, TwitterModule}
 

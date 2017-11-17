@@ -6,7 +6,6 @@ import javax.inject.Singleton
 import com.google.inject.Provides
 import com.twitter.finatra.http.internal.marshalling.MessageBodyManager
 import com.twitter.finatra.http.modules.DocRootModule
-import com.twitter.finatra.utils.FileResolver
 import com.twitter.inject.annotations.Flag
 import com.twitter.inject.{Injector, TwitterModule}
 
@@ -17,7 +16,7 @@ object FreemarkerModule extends TwitterModule {
 
   @Provides
   @Singleton
-  def provideFreemarkerFactory(resolver: FileResolver, @Flag("local.doc.root") localDocRoot: String): FreemarkerConfigurationFactory = {
+  def provideFreemarkerFactory(@Flag("local.doc.root") localDocRoot: String): FreemarkerConfigurationFactory = {
     localDocRoot match {
       case s: String if s != null && s.trim.length > 0 => FreemarkerConfigurationFactory((new File(new File(localDocRoot), templatesDir())))
       case _ => FreemarkerConfigurationFactory(Thread.currentThread().getContextClassLoader, templatesDir())

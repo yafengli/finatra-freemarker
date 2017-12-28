@@ -12,8 +12,8 @@ import com.twitter.finatra.response.Mustache
 import com.twitter.inject.Injector
 import com.twitter.inject.TypeUtils.singleTypeParam
 import com.twitter.inject.conversions.map._
-import finatra.freemarker.Freemarker
 import finatra.views.beetl.Beetl
+import finatra.views.freemarker.Freemarker
 import net.codingwell.scalaguice._
 
 import scala.collection.mutable
@@ -28,6 +28,7 @@ class MessageBodyManager @Inject()(
   private val classTypeToReader = mutable.Map[Type, MessageBodyReader[Any]]()
   private val classTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 
+  //add classOf[Beetl], classOf[Freemarker]
   private val writerAnnotations: Seq[Class[_ <: Annotation]] = Seq(classOf[Mustache], classOf[Beetl], classOf[Freemarker])
   private val annotationTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 
@@ -137,7 +138,6 @@ class MessageBodyManager @Inject()(
     clazz.getAnnotations.collectFirst {
       case annotation if writerAnnotations.contains(annotation.annotationType()) => annotation
     }.flatMap { annotation =>
-      println("ann:" + annotation.annotationType())
       annotationTypeToWriter.get(annotation.annotationType)
     }
   }

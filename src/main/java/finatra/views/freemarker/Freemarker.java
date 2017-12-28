@@ -1,4 +1,4 @@
-package finatra.freemarker;
+package finatra.views.freemarker;
 
 
 import java.lang.annotation.Retention;

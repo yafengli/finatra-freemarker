@@ -9,6 +9,7 @@ lazy val root = (project in file(".")).settings(
   scalaVersion := $("scala"),
   libraryDependencies ++= Seq(
     "com.twitter" %% "finatra-http" % $("finatra"),
+    "com.ibeetl" % "beetl" % $("beetl"),
     "org.freemarker" % "freemarker" % $("freemarker"),
     "commons-beanutils" % "commons-beanutils" % $("commons-beanutils"),
     "ch.qos.logback" % "logback-classic" % $("logback"),

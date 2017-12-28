@@ -8,6 +8,7 @@ import com.twitter.finatra.http.internal.marshalling.MessageBodyManager
 import com.twitter.finatra.http.modules.DocRootModule
 import com.twitter.inject.annotations.Flag
 import com.twitter.inject.{Injector, TwitterModule}
+import finatra.views.freemarker.Freemarker
 
 object FreemarkerModule extends TwitterModule {
   private val templatesDir = flag("freemarker.templates.dir", "templates", "templates resource directory")

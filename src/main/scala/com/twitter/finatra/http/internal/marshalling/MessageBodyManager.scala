@@ -1,10 +1,5 @@
 package com.twitter.finatra.http.internal.marshalling
 
-import java.lang.annotation.Annotation
-import java.lang.reflect.Type
-import java.util.concurrent.ConcurrentHashMap
-import javax.inject.{Inject, Singleton}
-
 import com.google.inject.internal.MoreTypes.ParameterizedTypeImpl
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.marshalling._
@@ -12,12 +7,40 @@ import com.twitter.finatra.response.Mustache
 import com.twitter.inject.Injector
 import com.twitter.inject.TypeUtils.singleTypeParam
 import com.twitter.inject.conversions.map._
+import java.lang.annotation.Annotation
+import java.lang.reflect.Type
+import java.util.concurrent.ConcurrentHashMap
+import javax.inject.{Inject, Singleton}
+
 import finatra.views.beetl.Beetl
 import finatra.views.freemarker.Freemarker
 import net.codingwell.scalaguice._
 
 import scala.collection.mutable
 
+/**
+  * Manages registration of message body components. I.e., components that specify how to parse
+  * an incoming Finagle HTTP request body into a model object ("message body reader") and how to
+  * render a given type as a response ("message body writer").
+  *
+  * A default implementation for both a reader and a writer is necessary in order to specify the
+  * behavior to invoke when a reader or writer is not found for a requested type `T`. The framework
+  * binds two default implementations: `DefaultMessageBodyReader` and `DefaultMessageBodyWriter` via
+  * the [[com.twitter.finatra.http.modules.MessageBodyModule]].
+  *
+  * These defaults are overridable by providing a customized `MessageBodyModule` in your
+  * [[com.twitter.finatra.http.HttpServer]] by overriding the
+  * [[com.twitter.finatra.http.HttpServer.messageBodyModule]].
+  *
+  * When the MessageBodyManager is obtained from the injector (which is configured with the framework
+  * [[com.twitter.finatra.http.modules.MessageBodyModule]] the framework default implementations for
+  * the reader and writer will be provided accordingly (along with the configured server injector).
+  *
+  * @param injector                 the configured [[com.twitter.inject.Injector]] for the server.
+  * @param defaultMessageBodyReader a default message body reader implementation.
+  * @param defaultMessageBodyWriter a default message body writer implementation.
+  * @see [[com.twitter.finatra.http.modules.MessageBodyModule]]
+  */
 @Singleton
 class MessageBodyManager @Inject()(
                                     injector: Injector,
@@ -28,8 +51,7 @@ class MessageBodyManager @Inject()(
   private val classTypeToReader = mutable.Map[Type, MessageBodyReader[Any]]()
   private val classTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 
-  //add classOf[Beetl], classOf[Freemarker]
-  private val writerAnnotations: Seq[Class[_ <: Annotation]] = Seq(classOf[Mustache], classOf[Beetl], classOf[Freemarker])
+  private val writerAnnotations: Seq[Class[_ <: Annotation]] = Seq(classOf[Mustache], classOf[Freemarker], classOf[Beetl])
   private val annotationTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 
   private val readerCache =

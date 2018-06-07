@@ -5,6 +5,7 @@ finatra-freemarker
 
 #### Publish jCenter
 + `jCenter`:
+
                 
                 sbt
                 >bintrayChangeCredentials   //first

@@ -1,20 +1,16 @@
 finatra-freemarker
-------------
+-------
 #### Publish Ivy Repository
 + Local:`sbt publishLocal`
 
 #### Publish jCenter
-+ jCenter:
-
-        sbt
-        >bintrayChangeCredentials   //first
-        >+publish
++ `jCenter`:
+                sbt
+                >bintrayChangeCredentials   //first
+                >+publish
 
 #### Usage
 + `build.sbt`:
 
-     libraryDependencies += "greatbit" %% "finatra-freemarker" % $("finatra")
-
-
-
-
+                resolvers +=  "Finatra-Freemarker Repository" at "https://dl.bintray.com/yafengli/maven/"
+                libraryDependencies += "greatbit" %% "finatra-freemarker" % $("finatra")

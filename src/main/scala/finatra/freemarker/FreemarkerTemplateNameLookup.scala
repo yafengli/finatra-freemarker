@@ -21,9 +21,9 @@ private[freemarker] class FreemarkerTemplateNameLookup {
 
   /* Private */
 
-  private def lookupViaAnnotation(viewObj: Any): String = {
+  private def lookupViaAnnotation(viewObj: Any): String = { 
     classToTemplateNameCache.getOrElseUpdate(viewObj.getClass, {
-      val freemarkerAnnotation = viewObj.getClass.getAnnotation(classOf[Freemarker])
+      val freemarkerAnnotation = viewObj.getClass.getAnnotation(classOf[Freemarker])      
       freemarkerAnnotation.value + suffix
     })
   }

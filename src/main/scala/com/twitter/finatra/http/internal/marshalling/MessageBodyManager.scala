@@ -1,19 +1,19 @@
 package com.twitter.finatra.http.internal.marshalling
 
-import com.google.inject.internal.MoreTypes.ParameterizedTypeImpl
-import com.twitter.finagle.http.Request
-import com.twitter.finatra.http.marshalling._
-import com.twitter.finatra.response.Mustache
-import com.twitter.inject.Injector
-import com.twitter.inject.TypeUtils.singleTypeParam
-import com.twitter.inject.conversions.map._
 import java.lang.annotation.Annotation
 import java.lang.reflect.Type
 import java.util.concurrent.ConcurrentHashMap
-import javax.inject.{Inject, Singleton}
 
+import com.google.inject.internal.MoreTypes.ParameterizedTypeImpl
+import com.twitter.finagle.http.Request
+import com.twitter.finatra.http.marshalling._
+import com.twitter.finatra.http.response.Mustache
+import com.twitter.inject.Injector
+import com.twitter.inject.TypeUtils.singleTypeParam
+import com.twitter.inject.conversions.map._
 import finatra.views.beetl.Beetl
 import finatra.views.freemarker.Freemarker
+import javax.inject.{Inject, Singleton}
 import net.codingwell.scalaguice._
 
 import scala.collection.mutable
@@ -51,6 +51,7 @@ class MessageBodyManager @Inject()(
   private val classTypeToReader = mutable.Map[Type, MessageBodyReader[Any]]()
   private val classTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 
+  // TODO ADD  classOf[Freemarker] classOf[Beetl]
   private val writerAnnotations: Seq[Class[_ <: Annotation]] = Seq(classOf[Mustache], classOf[Freemarker], classOf[Beetl])
   private val annotationTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 

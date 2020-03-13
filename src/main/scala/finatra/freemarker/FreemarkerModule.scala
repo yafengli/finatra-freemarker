@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 import com.google.inject.Provides
 import com.twitter.finatra.http.internal.marshalling.MessageBodyManager
-import com.twitter.finatra.http.modules.DocRootModule
+import com.twitter.finatra.modules.FileResolverModule
 import com.twitter.inject.annotations.Flag
 import com.twitter.inject.{Injector, TwitterModule}
 import finatra.views.freemarker.Freemarker
@@ -13,7 +13,7 @@ import finatra.views.freemarker.Freemarker
 object FreemarkerModule extends TwitterModule {
   private val templatesDir = flag("freemarker.templates.dir", "templates", "templates resource directory")
 
-  override def modules = Seq(DocRootModule)
+  override def modules = Seq(FileResolverModule)
 
   @Provides
   @Singleton

@@ -43,7 +43,7 @@ class FreemarkerMessageBodyWriter @Inject()(factory: FreemarkerConfigurationFact
 
   override def write(obj: Any): WriterResponse = {
     WriterResponse(
-      MediaType.HTML_UTF_8,
+      MediaType.HTML_UTF_8.toString(),
       createBuffer(obj))
   }
 

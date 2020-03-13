@@ -7,7 +7,6 @@ import java.util.concurrent.ConcurrentHashMap
 import com.google.inject.internal.MoreTypes.ParameterizedTypeImpl
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.marshalling._
-import com.twitter.finatra.http.response.Mustache
 import com.twitter.inject.Injector
 import com.twitter.inject.TypeUtils.singleTypeParam
 import com.twitter.inject.conversions.map._
@@ -52,7 +51,7 @@ class MessageBodyManager @Inject()(
   private val classTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 
   // TODO ADD  classOf[Freemarker] classOf[Beetl]
-  private val writerAnnotations: Seq[Class[_ <: Annotation]] = Seq(classOf[Mustache], classOf[Freemarker], classOf[Beetl])
+  private val writerAnnotations: Seq[Class[_ <: Annotation]] = Seq(classOf[Freemarker], classOf[Beetl])
   private val annotationTypeToWriter = mutable.Map[Type, MessageBodyWriter[Any]]()
 
   private val readerCache =

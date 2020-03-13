@@ -12,7 +12,7 @@ import com.twitter.io.Buf
 import scala.collection.JavaConverters._
 
 @Singleton
-class BeetlMessageBodyWriter @Inject()(factory: BeetlConfigurationFactory, templateNameLookup: BeetlTemplateNameLookup) extends MessageBodyWriter[Any] {
+class BeetlMessageBodyWriter @Inject() (factory: BeetlConfigurationFactory, templateNameLookup: BeetlTemplateNameLookup) extends MessageBodyWriter[Any] {
 
   private[beetl] def createBuffer(obj: Any): Buf = {
     val outputStream = new ByteArrayOutputStream(1024)
@@ -23,8 +23,7 @@ class BeetlMessageBodyWriter @Inject()(factory: BeetlConfigurationFactory, templ
       template.renderTo(writer)
     } catch {
       case e: Exception => e.printStackTrace()
-    }
-    finally {
+    } finally {
       writer.close()
     }
 
@@ -45,9 +44,7 @@ class BeetlMessageBodyWriter @Inject()(factory: BeetlConfigurationFactory, templ
   }
 
   override def write(obj: Any): WriterResponse = {
-    WriterResponse(
-      MediaType.HTML_UTF_8,
-      createBuffer(obj))
+    WriterResponse(MediaType.HTML_UTF_8.toString(), createBuffer(obj))
   }
 
   /* Private */

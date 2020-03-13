@@ -1,4 +1,8 @@
+
 *.class
+#vsc
+.metals/
+.bloop/
 # Package Files #
 *.jar
 *.war
